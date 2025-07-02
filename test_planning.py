@@ -25,8 +25,6 @@ with st.form("ajout_form"):
             nom_tache
         ))
         st.success("Tâche ajoutée.")
-    # On stoppe tout ici pour éviter des erreurs
-        st.stop()
 
 if st.session_state.planning:
     df = pd.DataFrame(st.session_state.planning, columns=["date", "heure_debut", "heure_fin", "nom"])
