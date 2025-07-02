@@ -14,15 +14,16 @@ if "planning" not in st.session_state:
 with st.form("ajout_form"):
     st.subheader("➕ Ajouter une tâche")
 
-    now = datetime.now()
+    date_tache = st.date_input("📅 Date de la tâche", value=datetime.today())
     col1, col2 = st.columns(2)
-    heure_debut = col1.time_input("Heure de début", now.time())
-    heure_fin = col2.time_input("Heure de fin", (now + timedelta(minutes=30)).time())
+    heure_debut = col1.time_input("Heure de début", value=time(9, 0))
+    heure_fin = col2.time_input("Heure de fin", value=time(10, 0))
     nom_tache = st.text_input("Nom de la tâche", "Tâche test")
 
     submitted = st.form_submit_button("📌 Ajouter au planning")
     if submitted:
-        date_str = now.strftime("%Y-%m-%d")
+        date_str = date_tache.strftime("%Y-%m-%d")
+
         st.session_state.planning.append((
             date_str,
             heure_debut.strftime("%H:%M"),
